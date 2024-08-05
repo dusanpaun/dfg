@@ -27,10 +27,10 @@ function Enemy:update(player)
         Notifications:add("You have defeten " .. self.kind .. "!")
         self:dropLoot(Loot)
         self:generate(
-            "goblin", 
-            math.random(Game.panels.play.x + 5, Game.panels.play.w - 60), 
-            math.random(Game.panels.play.y + 5, Game.panels.play.h - 60), 
-            50, 
+            "goblin",
+            math.random(Game.panels.play.x + 5, Game.panels.play.w - 60),
+            math.random(Game.panels.play.y + 5, Game.panels.play.h - 60),
+            50,
             50
         )
     end

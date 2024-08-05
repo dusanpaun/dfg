@@ -29,36 +29,36 @@ function Inventory:draw()
 
         -- background
         love.graphics.setColor(
-            self.colors.background.r, 
+            self.colors.background.r,
             self.colors.background.g,
             self.colors.background.b,
             self.colors.background.a
         )
         love.graphics.rectangle(
-            "fill", 
+            "fill",
             self.panels.background.x,
-            self.panels.background.y, 
+            self.panels.background.y,
             self.panels.background.w,
             self.panels.background.h
         )
 
         -- inventory
         love.graphics.setColor(
-            self.colors.inventory.r, 
+            self.colors.inventory.r,
             self.colors.inventory.g,
             self.colors.inventory.b
         )
         love.graphics.rectangle(
-            "fill", 
+            "fill",
             self.panels.inventory.x,
-            self.panels.inventory.y, 
+            self.panels.inventory.y,
             self.panels.inventory.w,
             self.panels.inventory.h
         )
 
         -- slots
         love.graphics.setColor(
-            self.colors.slot_outline.r, 
+            self.colors.slot_outline.r,
             self.colors.slot_outline.g,
             self.colors.slot_outline.b
         )
@@ -108,7 +108,7 @@ function Inventory:draw()
         love.graphics.print("Gold: " .. Player.gold, 650, 550)
         love.graphics.print("Level:  " .. Player.level, 890, 510)
         love.graphics.print("Experience:  " .. Player.experience, 890, 530)
-        
+
         love.graphics.setFont(Game.fonts.title_font)
         love.graphics.print(Player.name .. ", a Dwarf", 110, 100)
         love.graphics.setFont(Game.fonts.regular_font)

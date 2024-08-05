@@ -1,10 +1,12 @@
 # Done Features
 
 ## Player stats widgets
+
 - Player sees his health and stamina, beside Inventory, Help and Systems buttons
 - A logic to update player health and stamina as well as basic interactability with buttons
 
 ## Help screen
+
 - A panel like windows that shows you all keybndings when you hit "h" key
 - Should be more worked on in futures
 

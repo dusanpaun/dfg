@@ -12,7 +12,7 @@ Game = {
         title_bold_font   = love.graphics.newFont('assets/SpaceMono-Bold.ttf', 22)
     },
     states = {
-        introNeeded = false, 
+        introNeeded = false,
         inventoryShown = false,
         helpScreenShown = false,
         panelPopupOpened = false
@@ -81,8 +81,8 @@ function Game:drawPlayScreen()
     love.graphics.rectangle("fill", 5, 30, fillStaminaWidth, barHight)
     love.graphics.setFont(self.fonts.regular_bold_font)
     love.graphics.print(Player.stamina.cur .. "/" .. Player.stamina.max .. "(" .. (Player.stamina.cur/Player.stamina.max)*100 .. "%)", 160, 25)
-    love.graphics.setFont(self.fonts.regular_font)  
-    
+    love.graphics.setFont(self.fonts.regular_font)
+
     for _, button in ipairs(self.buttons) do
         if button == hoveredButton then
             love.graphics.setColor(button.hoverColor)

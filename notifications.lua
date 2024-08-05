@@ -4,10 +4,10 @@ function Notifications:init()
     self.messages = {}
     self.maxShow = 12
     self.h = 20
-    self.area = { 
-        x = Game.panels.notifications.x, 
-        y = Game.panels.notifications.y, 
-        w = Game.panels.notifications.w, 
+    self.area = {
+        x = Game.panels.notifications.x,
+        y = Game.panels.notifications.y,
+        w = Game.panels.notifications.w,
         h = Game.panels.notifications.h
     }
 end

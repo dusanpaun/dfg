@@ -11,7 +11,7 @@ function Loot:init()
 end
 
 function Loot:draw()
-    if countEntries(self.drop) > 0 then 
+    if countEntries(self.drop) > 0 then
         for id, l in pairs(self.drop) do
             love.graphics.draw(self.canvas, l.x, l.y)
         end

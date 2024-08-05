@@ -26,29 +26,29 @@ function HelpScreen:draw()
 
         -- background
         love.graphics.setColor(
-            self.colors.background.r, 
+            self.colors.background.r,
             self.colors.background.g,
             self.colors.background.b,
             self.colors.background.a
         )
         love.graphics.rectangle(
-            "fill", 
+            "fill",
             self.panels.background.x,
-            self.panels.background.y, 
+            self.panels.background.y,
             self.panels.background.w,
             self.panels.background.h
         )
 
         -- help
         love.graphics.setColor(
-            self.colors.help.r, 
+            self.colors.help.r,
             self.colors.help.g,
             self.colors.help.b
         )
         love.graphics.rectangle(
-            "fill", 
+            "fill",
             self.panels.help.x,
-            self.panels.help.y, 
+            self.panels.help.y,
             self.panels.help.w,
             self.panels.help.h
         )
