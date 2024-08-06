@@ -1,27 +1,21 @@
-Player = {}
+Player = {
+    name = "Bélgar Umrend",
+    health = { max = 10, cur = 10 },
+    stamina = { max = 20, cur = 20 },
+    alive = true,
+	level = 1,
+	experience = 0,
+	x = 100,
+	y = 100,
+    w = 64,
+    h = 64,
+	speed = 500,
+    gold = 10,
+    sprite = love.graphics.newImage('assets/dwarf.png'),
+    canvas = love.graphics.newCanvas(64, 64)
+}
 
 function Player:init()
-    self.name = "Bélgar Umrend"
-    self.health = {
-        max = 10,
-        cur = 10
-    }
-    self.stamina = {
-        max = 20,
-        cur = 20
-    }
-	self.magicPoints = 3
-	self.level = 1
-	self.experience = 0
-	self.x = 100
-	self.y = 100
-    self.w = 64
-    self.h = 64
-	self.speed = 500
-    self.gold = 10
-    self.sprite = love.graphics.newImage('assets/dwarf.png')
-    self.canvas = love.graphics.newCanvas(64, 64)
-
     love.graphics.setCanvas(self.canvas)
     love.graphics.draw(self.sprite, 0, 0, 0, 2, 2)
     love.graphics.setCanvas()
@@ -34,18 +28,18 @@ end
 
 function Player:move(dt)
     local dx, dy = 0, 0
-    local playArea = { 
-        x = Game.panels.play.x, 
-        y = Game.panels.play.y , 
-        w = Game.panels.play.w, 
-        h = Game.panels.play.h 
+    local playArea = {
+        x = Game.panels.play.x,
+        y = Game.panels.play.y,
+        w = Game.panels.play.w,
+        h = Game.panels.play.h
     }
     if not gameIntroState then
-        if love.keyboard.isDown(GameControls.keys.move.up.prm) or 
+        if love.keyboard.isDown(GameControls.keys.move.up.prm) or
             love.keyboard.isDown(GameControls.keys.move.up.sec) then
             dy = dy - 1
         end
-        if love.keyboard.isDown(GameControls.keys.move.down.prm) or 
+        if love.keyboard.isDown(GameControls.keys.move.down.prm) or
         love.keyboard.isDown(GameControls.keys.move.down.sec) then
             dy = dy + 1
         end
@@ -102,4 +96,20 @@ function Player:nearLoot(loot)
         end
     end
     return nil -- No collision detected
+end
+
+function Player:maxHealthInc(x)
+    self.health.max = self.health.max + x
+end
+
+function Player:maxHealthDec(x)
+    self.health.max = self.health.max - x
+end
+
+function Player:curHealthInc(x)
+    self.health.cur = self.health.cur + x
+end
+
+function Player:curHealthDec(x)
+    self.health.cur = self.health.cur - x
 end

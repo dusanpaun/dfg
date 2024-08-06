@@ -1,24 +1,29 @@
-HelpScreen = {}
-
-function HelpScreen:init()
-    self.colors = {
+HelpScreen = {
+    colors = {
         background = { r = 0, g = 0, b = 0, a = 0.6 },
         help = {r = 0.322, g = 0.102, b = 0.529},
-    }
-    self.panels = {
+    },
+    panels = {
         background = { x = 0, y = 0, w = 1280, h = 720 },
-        help = { x = 100, y = 100, w = 1080, h = 520 }
+        help = { x = 100, y = 100, w = 1030, h = 520 }
     }
-end
+}
 
-function HelpScreen:open()
-    Game.states.helpScreenShown = true
-    Game.panelPopupOpened = true
+function HelpScreen:toggle()
+    if not Game.states.panelPopupOpened and not Game.states.helpScreenShown then
+        Game.states.helpScreenShown = true
+        Game.states.panelPopupOpened = true
+    elseif Game.states.panelPopupOpened and Game.states.helpScreenShown then
+        Game.states.helpScreenShown = false
+        Game.states.panelPopupOpened = false
+    else
+        Game.states.helpScreenShown = false
+    end
 end
 
 function HelpScreen:close()
     Game.states.helpScreenShown = false
-    Game.panelPopupOpened = false
+    Game.states.panelPopupOpened = false
 end
 
 function HelpScreen:draw()
@@ -54,6 +59,7 @@ function HelpScreen:draw()
         )
 
         love.graphics.setColor(1, 1, 1)
+        love.graphics.rectangle("fill", 1145, 45, 40, 40) -- close
         love.graphics.setFont(Game.fonts.title_font)
         love.graphics.print("Game help", 110, 100)
         love.graphics.print("Move up:       " .. GameControls.keys.move.up.prm .. " or " .. GameControls.keys.move.up.sec, 110, 150)

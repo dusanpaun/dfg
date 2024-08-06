@@ -1,23 +1,19 @@
-require "game"
-require "gameDatabase"
-require "gameControls"
 require "enemy"
-require "player"
-require "notifications"
-require "tools"
-require "loot"
+require "game"
+require "gameControls"
+require "gameDatabase"
+require "helpScreen"
 require "inventory"
-require "help"
+require "loot"
+require "notifications"
+require "player"
 require "system"
+require "tools"
 
 function love.load()
     Game:init()
     Player:init()
     Loot:init()
-    Inventory:init()
-    SystemSettings:init()
-    HelpScreen:init()
-    GameControls:init()
     Enemy:generate("robot", 250, 250, 50, 50)
 end
 
@@ -28,7 +24,7 @@ end
 
 function love.draw()
     Game:drawGui()
-    Notifications:draw()
+    -- Notifications:draw()
     Loot:draw()
     Enemy:draw()
     Player:draw()
@@ -38,4 +34,5 @@ function love.draw()
     end
     Inventory:draw()
     HelpScreen:draw()
+    Notifications:draw_v2()
 end

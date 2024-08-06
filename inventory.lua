@@ -1,27 +1,31 @@
-Inventory = {}
-
-function Inventory:init()
-    self.items = {}
-    self.colors = {
+Inventory = {
+    items = {},
+    colors = {
         background = { r = 0, g = 0, b = 0, a = 0.6 },
         inventory = {r = 0.9, g = 0.65, b = 0.2},
         slot_outline = { r = 1, g = 1, b = 1, lt = 2 }
-    }
-    self.panels = {
+    },
+    panels = {
         background = { x = 0, y = 0, w = 1280, h = 720 },
         inventory = { x = 100, y = 100, w = 1030, h = 520 }
     }
-end
+}
 
-function Inventory:addItems()
-end
-
-function Inventory:open()
-    Game.states.inventoryShown = true
+function Inventory:toggle()
+    if not Game.states.panelPopupOpened and not Game.states.inventoryShown then
+        Game.states.inventoryShown = true
+        Game.states.panelPopupOpened = true
+    elseif Game.states.panelPopupOpened and Game.states.inventoryShown then
+        Game.states.inventoryShown = false
+        Game.states.panelPopupOpened = false
+    else
+        Game.states.inventoryShown = false
+    end
 end
 
 function Inventory:close()
     Game.states.inventoryShown = false
+    Game.states.panelPopupOpened = false
 end
 
 function Inventory:draw()
@@ -104,7 +108,6 @@ function Inventory:draw()
 
         -- Info
         love.graphics.print("Health Points: " .. Player.health.cur, 650, 510)
-        love.graphics.print("Magic points:  " .. Player.magicPoints, 650, 530)
         love.graphics.print("Gold: " .. Player.gold, 650, 550)
         love.graphics.print("Level:  " .. Player.level, 890, 510)
         love.graphics.print("Experience:  " .. Player.experience, 890, 530)

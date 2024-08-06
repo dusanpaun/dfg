@@ -1,7 +1,5 @@
-GameControls = {}
-
-function GameControls:init()
-    self.keys = {
+GameControls = {
+    keys = {
         move = {
             up = {
                 prm = "up",
@@ -24,11 +22,14 @@ function GameControls:init()
         inventory = "i",
         help = "h",
         quit = "q",
-        skip = "space"
+        notifications = "n",
+        skip = "space",
+        closer = "escape"
     }
-end
+}
 
 function love.keypressed(key)
+    print("Detecting key: " .. key)
     if key == GameControls.keys.quit then
         love.event.quit()
     end
@@ -43,17 +44,26 @@ function love.keypressed(key)
         end
     end
     if key == GameControls.keys.inventory then
-        if Game.states.inventoryShown then
-            Inventory:close()
-        else
-            Inventory:open()
-        end
+        Inventory:toggle()
     end
     if key == GameControls.keys.help then
-        if Game.states.helpScreenShown then
-            HelpScreen:close()
-        else
-            HelpScreen:open()
+        HelpScreen:toggle()
+    end
+    if key == GameControls.keys.notifications then
+        Notifications:toggle()
+    end
+    if key == GameControls.keys.closer then
+        print("Detected escape")
+        if Game.states.panelPopupOpened then
+            if Game.states.helpScreenShown then
+                HelpScreen:close()
+            end
+            if Game.states.inventoryShown then
+                Inventory:close()
+            end
+            if Game.states.notificationsShown then
+                Notifications:close()
+            end
         end
     end
 end
@@ -74,7 +84,7 @@ end
 
 function love.mousepressed(x, y, button, istouch, presses)
     print("Mouse pressed detected at: ", x, y)  -- Debug print
-    if button == 1 then  -- Left mouse button
+    if button == 1 and not Game.states.panelPopupOpened then  -- Left mouse button
         for _, btn in ipairs(Game.buttons) do
             if x >= btn.x and x <= btn.x + btn.width and
                y >= btn.y and y <= btn.y + btn.height then
