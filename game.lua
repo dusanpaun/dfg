@@ -16,13 +16,18 @@ Game = {
         inventoryShown = false,
         helpScreenShown = false,
         notificationsShown = false,
+        systemSettingsShown = false,
+        quitConfirmationShown = false,
         panelPopupOpened = false
     },
     buttons = {
         {id = 1, x = 1120, y = 5, width = 35, height = 45, color = {0, 0, 0}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "NTF", action = function() Notifications:toggle() end},
         {id = 2, x = 1160, y = 5, width = 35, height = 45, color = {0.9, 0.65, 0.2}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "INV", action = function() Inventory:toggle() end},
         {id = 3, x = 1200, y = 5, width = 35, height = 45, color = {0.322, 0.102, 0.529}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "HLP", action = function() HelpScreen:toggle() end},
-        {id = 4, x = 1240, y = 5, width = 35, height = 45, color = {0, 0, 1}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "SYS", action = function() print("Button 3 clicked!") end}
+        {id = 4, x = 1240, y = 5, width = 35, height = 45, color = {0, 0, 1}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "SYS", action = function() systemSettings:toggle() end}
+    },
+    systemButtons = {
+        {id = 1, x = 1145, y = 45, width = 40, height = 45, color = {1, 1, 1}, hoverColor = {1, 0, 0, 1}, text = "CLS", action = function() Game:popupClose() end},
     }
 }
 
@@ -54,6 +59,13 @@ function Game:drawGui()
     local screenHeight = love.graphics.getHeight()
     love.graphics.draw(self.background, 0, 0, 0, screenWidth / self.background:getWidth(), screenHeight / self.background:getHeight())
     love.graphics.setColor(1, 1, 1)
+end
+
+function Game:popupClose()
+    if self.states.inventoryShown then Inventory:close() end
+    if self.states.helpScreenShown then HelpScreen:close() end
+    if self.states.notificationsShown then Notifications:close() end
+    if self.states.systemSettingsShown then systemSettings:close() end
 end
 
 function Game:drawPlayScreen()
@@ -92,6 +104,15 @@ function Game:drawPlayScreen()
         else
             love.graphics.setColor(button.color)
         end
+        love.graphics.rectangle("fill", button.x, button.y, button.width, button.height)
+        love.graphics.setColor(1, 1, 1)  -- White text
+        love.graphics.printf(button.text, button.x, button.y + button.height / 2 - 10, button.width, "center")
+    end
+end
+
+function Game:drawCloseButtons()
+    for _, button in ipairs(self.systemButtons) do
+        love.graphics.setColor(button.hoverColor)
         love.graphics.rectangle("fill", button.x, button.y, button.width, button.height)
         love.graphics.setColor(1, 1, 1)  -- White text
         love.graphics.printf(button.text, button.x, button.y + button.height / 2 - 10, button.width, "center")

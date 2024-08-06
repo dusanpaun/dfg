@@ -67,7 +67,7 @@ function Inventory:draw()
             self.colors.slot_outline.b
         )
 
-        love.graphics.rectangle("fill", 1145, 45, 40, 40) -- close
+        -- love.graphics.rectangle("fill", 1145, 45, 40, 40) -- close
         love.graphics.rectangle("fill", 1145, 520, 80, 100) -- trash
 
         -- 1

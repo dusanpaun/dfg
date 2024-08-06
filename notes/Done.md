@@ -1,5 +1,10 @@
 # Done Features
 
+## Systems menu and enhance popup interaction
+
+- There is now a primitive systems menu, that is lading to close game
+- Player is now able to close popups on close buttons
+
 ## Player notifications v2
 
 - 90% of all notifications have been move to separate popup window

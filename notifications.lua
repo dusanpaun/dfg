@@ -80,7 +80,6 @@ function Notifications:draw()
         love.graphics.rectangle("fill", 1145, 45, 40, 40) -- close
         love.graphics.setFont(Game.fonts.title_font)
 
-        love.graphics.setColor(1, 1, 1)
         local startIndex = math.max(1, #self.messages_full - self.maxShow_full + 1)
 
         for i = #self.messages_full, startIndex, -1 do -- Draw notifications in reverse order to show the latest one at the top
@@ -95,7 +94,6 @@ function Notifications:draw()
             self.colors.background.r,
             self.colors.background.g,
             self.colors.background.b
-            -- self.colors.background.a
         )
     love.graphics.rectangle(
         "fill",
@@ -105,7 +103,7 @@ function Notifications:draw()
         self.panels.notifications_quick.h
     )
 
-    if Game.states.notificationsShown then
+    if Game.states.panelPopupOpened then
         love.graphics.setColor(1,1,1,0.6)
     else
         love.graphics.setColor(1,1,1)

@@ -1,18 +1,16 @@
-# Current feature: Systems menu and enhance popup interaction
+# Current feature: basic combat
 
 ## Feature TODOs
 
-- Player is able to open a Systems menu
-- Player is able to close game from systems menu
-- Player before quitting game is received a popup to confirm closing
-- Player is able to close all popups on close button
-- Add a win screen
-- Add a defeat screen
+- Enemy can hit player
+- Player can lose health
+- Player can heal if he gets a potion
+- Potion can buy for 100g
+- If player health drops to 0 he loses
 
 ## Next features
 
 - Player equipment
-- Basic combat
 - Scalable fullscreen
 
 ### Feature ideas

@@ -7,7 +7,7 @@ require "inventory"
 require "loot"
 require "notifications"
 require "player"
-require "system"
+require "systemSettings"
 require "tools"
 
 function love.load()
@@ -29,7 +29,9 @@ function love.draw()
     Player:draw()
     Game:intro()
     if not Game.states.introNeeded then Game:drawPlayScreen() end
-    Inventory:draw()
     HelpScreen:draw()
+    systemSettings:draw()
+    Inventory:draw()
     Notifications:draw()
+    if Game.states.panelPopupOpened then Game:drawCloseButtons() end
 end
