@@ -1,5 +1,10 @@
 # Done Features
 
+## Player notifications v2
+
+- 90% of all notifications have been move to separate popup window
+- Only 3 last notifications are shown on the playScreen
+
 ## Player stats widgets
 
 - Player sees his health and stamina, beside Inventory, Help and Systems buttons

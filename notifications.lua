@@ -7,12 +7,12 @@ Notifications = {
     h_quick = 15,
     colors = {
         background = { r = 0, g = 0, b = 0, a = 0.6 },
-        notifications = {r = 0.702, g = 0.302, b = 0.302},
+        notifications = {r = 0, g = 0, b = 0},
     },
     panels = {
         background = { x = 0, y = 0, w = 1280, h = 720 },
         notifications_full = { x = 100, y = 100, w = 1030, h = 520 },
-        notifications_quick = { x = 285, y = 0, w = 830, h = 55 }
+        notifications_quick = { x = 290, y = 0, w = 825, h = 55 }
     }
 }
 
@@ -44,7 +44,7 @@ function Notifications:close()
     Game.states.panelPopupOpened = false
 end
 
-function Notifications:draw_v2()
+function Notifications:draw()
     if Game.states.notificationsShown then
 
         -- background
@@ -83,11 +83,9 @@ function Notifications:draw_v2()
         love.graphics.setColor(1, 1, 1)
         local startIndex = math.max(1, #self.messages_full - self.maxShow_full + 1)
 
-        -- Draw notifications in reverse order to show the latest one at the top
-        for i = #self.messages_full, startIndex, -1 do
+        for i = #self.messages_full, startIndex, -1 do -- Draw notifications in reverse order to show the latest one at the top
             local yPosition = self.panels.notifications_full.y + (#self.messages_full - i) * self.h
-            -- Ensure notifications are drawn within the fixed area
-            if yPosition >= self.panels.notifications_full.y and yPosition < self.panels.notifications_full.y + self.panels.notifications_full.h then
+            if yPosition >= self.panels.notifications_full.y and yPosition < self.panels.notifications_full.y + self.panels.notifications_full.h then -- Ensure notifications are drawn within the fixed area
                 love.graphics.print(self.messages_full[i], self.panels.notifications_full.x + 5, yPosition)
             end
         end
@@ -96,8 +94,8 @@ function Notifications:draw_v2()
     love.graphics.setColor(
             self.colors.background.r,
             self.colors.background.g,
-            self.colors.background.b,
-            self.colors.background.a
+            self.colors.background.b
+            -- self.colors.background.a
         )
     love.graphics.rectangle(
         "fill",
@@ -114,11 +112,10 @@ function Notifications:draw_v2()
     end
 
     local startIndexQ = math.max(1, #self.messages_quick - self.maxShow_quick + 1)
-    for i = #self.messages_quick, startIndexQ, -1 do
+    for i = #self.messages_quick, startIndexQ, -1 do -- Draw notifications in reverse order to show the latest one at the top
         local yPositionQ = self.panels.notifications_quick.y + (#self.messages_quick - i) * self.h_quick
-        -- Ensure notifications are drawn within the fixed area
-        if yPositionQ >= self.panels.notifications_quick.y and yPositionQ < self.panels.notifications_quick.y + self.panels.notifications_quick.h then
-            love.graphics.print(self.messages_quick[i], self.panels.notifications_quick.x + 5, yPositionQ)
+        if yPositionQ >= self.panels.notifications_quick.y and yPositionQ < self.panels.notifications_quick.y + self.panels.notifications_quick.h then -- Ensure notifications are drawn within the fixed area
+            love.graphics.print(self.messages_quick[i], self.panels.notifications_quick.x + 5, yPositionQ - 3) -- -3 is an offset to increase draw position
         end
     end
 

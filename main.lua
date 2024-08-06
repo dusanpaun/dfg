@@ -14,7 +14,7 @@ function love.load()
     Game:init()
     Player:init()
     Loot:init()
-    Enemy:generate("robot", 250, 250, 50, 50)
+    Enemy:generate("goblin", 250, 250, 50, 50)
 end
 
 function love.update(dt)
@@ -24,15 +24,12 @@ end
 
 function love.draw()
     Game:drawGui()
-    -- Notifications:draw()
     Loot:draw()
     Enemy:draw()
     Player:draw()
     Game:intro()
-    if not Game.states.introNeeded then
-        Game:drawPlayScreen()
-    end
+    if not Game.states.introNeeded then Game:drawPlayScreen() end
     Inventory:draw()
     HelpScreen:draw()
-    Notifications:draw_v2()
+    Notifications:draw()
 end

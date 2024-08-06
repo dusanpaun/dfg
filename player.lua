@@ -52,6 +52,7 @@ function Player:move(dt)
             dx = dx + 1
         end
     end
+
     -- Normalize direction vector if it's not zero
     local length = math.sqrt(dx * dx + dy * dy)
     if length > 0 then

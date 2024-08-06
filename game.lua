@@ -19,10 +19,10 @@ Game = {
         panelPopupOpened = false
     },
     buttons = {
-        {id = 1, x = 1120, y = 5, width = 35, height = 35, color = {0.802, 0, 0}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "NTF", action = function() Notifications:toggle() end},
-        {id = 2, x = 1160, y = 5, width = 35, height = 35, color = {0.9, 0.65, 0.2}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "INV", action = function() Inventory:toggle() end},
-        {id = 3, x = 1200, y = 5, width = 35, height = 35, color = {0.322, 0.102, 0.529}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "HLP", action = function() HelpScreen:toggle() end},
-        {id = 4, x = 1240, y = 5, width = 35, height = 35, color = {0, 0, 1}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "SYS", action = function() print("Button 3 clicked!") end}
+        {id = 1, x = 1120, y = 5, width = 35, height = 45, color = {0, 0, 0}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "NTF", action = function() Notifications:toggle() end},
+        {id = 2, x = 1160, y = 5, width = 35, height = 45, color = {0.9, 0.65, 0.2}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "INV", action = function() Inventory:toggle() end},
+        {id = 3, x = 1200, y = 5, width = 35, height = 45, color = {0.322, 0.102, 0.529}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "HLP", action = function() HelpScreen:toggle() end},
+        {id = 4, x = 1240, y = 5, width = 35, height = 45, color = {0, 0, 1}, hoverColor = {0.8, 0.8, 0.8, 1}, text = "SYS", action = function() print("Button 3 clicked!") end}
     }
 }
 
@@ -61,10 +61,10 @@ function Game:drawPlayScreen()
     local barHight = 20
     local fillHealthWidth = (Player.health.cur / Player.health.max) * barWidth
     local fillStaminaWidth = (Player.stamina.cur / Player.stamina.max) * barWidth
+
     -- under
     love.graphics.setColor(0.4,0.7,0.4)
-    love.graphics.rectangle("fill", 0, 0, 285, 55)
-    love.graphics.rectangle("fill", 1115, 0, 165, 45)
+    love.graphics.rectangle("fill", 0, 0, 1280, 55)
 
     -- health
     love.graphics.setColor(0,0,0)
@@ -75,6 +75,7 @@ function Game:drawPlayScreen()
     love.graphics.setFont(self.fonts.regular_bold_font)
     love.graphics.print(Player.health.cur .. "/" .. Player.health.max .. "(" .. (Player.health.cur/Player.health.max)*100 .. "%)", 160, 0)
     love.graphics.setFont(self.fonts.regular_font)
+
     -- stamina
     love.graphics.setColor(0,0,0)
     love.graphics.rectangle("fill", 5, 30, barWidth, barHight)
